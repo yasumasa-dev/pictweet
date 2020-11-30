@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
-  #before_action :set_tweet, only: [:edit, :show]    同じコードはまとめられる
+  before_action :set_tweet, only: [:edit, :show]    #同じコードはまとめられる
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @tweets = Tweet.all
@@ -40,7 +41,13 @@ class TweetsController < ApplicationController
     #params.require(:モデル名).permit(:キー名, :キー名)取得したいキーを指定する
   end
 
-  #def set_tweet                   同じコードはまとめられる
-  #  @tweet = Tweet.find(params[:id])
-  #end
+  def set_tweet                   #同じコードはまとめられる
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
 end
