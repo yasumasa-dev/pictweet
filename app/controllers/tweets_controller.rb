@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.includes(:user)
   end
 
   def new #データの投稿画面の表示
@@ -37,7 +37,7 @@ class TweetsController < ApplicationController
 
   private #クラス外から呼び出すことのできないメソッド
   def tweet_params
-    params.require(:tweet).permit(:name, :image, :text)
+    params.require(:tweet).permit(:image, :text).merge(user_id: current_user.id)
     #params.require(:モデル名).permit(:キー名, :キー名)取得したいキーを指定する
   end
 
