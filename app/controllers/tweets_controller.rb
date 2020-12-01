@@ -37,7 +37,7 @@ class TweetsController < ApplicationController
 
   private #クラス外から呼び出すことのできないメソッド
   def tweet_params
-    params.require(:tweet).permit(:name, :image, :text)
+    params.require(:tweet).permit(:name, :image, :text).merge(user_id: current_user.id)
     #params.require(:モデル名).permit(:キー名, :キー名)取得したいキーを指定する
   end
 
