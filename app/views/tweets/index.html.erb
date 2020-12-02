@@ -6,14 +6,14 @@
         <ul class="more_list">
         <li>
             <%= link_to '詳細', tweet_path(tweet.id), method: :get %> 
-            <!-- リンク先指定のパスが削除のパスと同じなのでHTTPメソッド(get)も指定する -->
+            <% if user_signed_in? && current_user.id == tweet.user_id %>
           </li>
          <li>
             <%= link_to '編集', edit_tweet_path(tweet.id), method: :get %>
           </li>
           <li>
             <%= link_to '削除', tweet_path(tweet.id), method: :delete %>
-            <!-- リンク先指定のパスが詳細のパスと同じなのでHTTPメソッド(delete)も指定する -->
+            <% end %>
           </li>
         </ul>
       </div>
