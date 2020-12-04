@@ -31,8 +31,8 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(params[:id]) #.index.htmlの詳細ボタンで指定したtweet_idを意味
-    #show.htmlで使う為にインスタンス変数を定義
+    @comment = Comment.new
+    @comments = @tweet.comments.includes(:user)
   end
 
   private #クラス外から呼び出すことのできないメソッド
