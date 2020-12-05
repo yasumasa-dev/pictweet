@@ -3,7 +3,7 @@
   <%= form.submit "検索", class: "search-btn" %>
 <% end %>
 <div class="contents row">
-  <% @tweets.each do |tweet| %> <!-- tweetのindexアクションで定義した@インスタンス変数 -->
-<%= render partial: "tweet", locals: { tweet: tweet } %>
+  <% @tweets.each do |tweet| %>
+    <%= render partial: "tweet", locals: { tweet: tweet } %>
   <% end %>
 </div>
