@@ -11,6 +11,7 @@ class TweetsController < ApplicationController
   end
 
   def create #データの保存(テーブルに追加)
+    binding.pry
     Tweet.create(tweet_params) #ストロングパラメーター(指定したキーを持つパラメーターのみを受け取るように制限するもの)で定義
    #意図しないデータの更新(他人のログインパスワードを変更するパラメーターを追加で送信して、勝手にパスワードを変更等)
   end
